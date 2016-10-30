@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">CompassViewSensors</string>
+
+    <string name="cardinalN">N</string>
+    <string name="cardinalS">S</string>
+    <string name="cardinalE">E</string>
+    <string name="cardinalW">W</string>
+
 </resources>

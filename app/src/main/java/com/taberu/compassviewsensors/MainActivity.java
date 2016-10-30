@@ -9,5 +9,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        CompassView cv = (CompassView) this.findViewById(R.id.compassView);
+        cv.setBearing(45);
     }
 }
