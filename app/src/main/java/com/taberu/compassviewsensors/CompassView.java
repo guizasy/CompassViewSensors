@@ -16,7 +16,7 @@ public class CompassView extends View {
     private Paint markerPaint;
     private Paint textPaint;
     private Paint circlePaint;
-    private String nothStr;
+    private String northStr;
     private String southStr;
     private String eastStr;
     private String westStr;
@@ -71,7 +71,7 @@ public class CompassView extends View {
         circlePaint.setStrokeWidth(5);
         circlePaint.setStyle(Paint.Style.FILL_AND_STROKE);
 
-        nothStr = r.getString(R.string.cardinalN);
+        northStr = r.getString(R.string.cardinalN);
         southStr = r.getString(R.string.cardinalS);
         eastStr = r.getString(R.string.cardinalE);
         westStr = r.getString(R.string.cardinalW);
@@ -113,7 +113,7 @@ public class CompassView extends View {
 
                 switch (i) {
                     case (0): {
-                        dirStr = nothStr;
+                        dirStr = northStr;
                         int arrowY = 2 * textHeight;
                         canvas.drawLine(px, arrowY, px - 10, 3 * textHeight, markerPaint);
                         canvas.drawLine(px, arrowY, px + 10, 3 * textHeight, markerPaint);
