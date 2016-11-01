@@ -1,16 +1,21 @@
 package com.taberu.compassviewsensors;
 
 import android.content.Context;
+import android.content.Intent;
+import android.content.IntentFilter;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
+import android.os.BatteryManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Display;
 import android.view.Surface;
 import android.view.WindowManager;
 import android.widget.TextView;
+
+import org.w3c.dom.Text;
 
 public class MainActivity extends AppCompatActivity {
     private CompassView compassView;
@@ -65,51 +70,71 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    public void updateText(float[] rotationMatrix, float[] values) {
-//        TextView tvR = (TextView) findViewById(R.id.x_roll);
-//        TextView tvP = (TextView) findViewById(R.id.y_pitch);
-//        TextView tvA = (TextView) findViewById(R.id.z_azimuth);
+    public float getBatteryLevel() {
+        Intent batteryIntent = registerReceiver(null, new IntentFilter(Intent.ACTION_BATTERY_CHANGED));
+        int level = batteryIntent.getIntExtra(BatteryManager.EXTRA_LEVEL, -1);
+        int scale = batteryIntent.getIntExtra(BatteryManager.EXTRA_SCALE, -1);
 
-        TextView tv1 = (TextView) findViewById(R.id.rot_1);
-        TextView tv2 = (TextView) findViewById(R.id.rot_2);
-        TextView tv3 = (TextView) findViewById(R.id.rot_3);
-        TextView tv4 = (TextView) findViewById(R.id.rot_4);
-        TextView tv5 = (TextView) findViewById(R.id.rot_5);
-        TextView tv6 = (TextView) findViewById(R.id.rot_6);
-        TextView tv7 = (TextView) findViewById(R.id.rot_7);
-        TextView tv8 = (TextView) findViewById(R.id.rot_8);
-        TextView tv9 = (TextView) findViewById(R.id.rot_9);
+        return ((float)level / (float)scale) * 100.0f;
+    }
+
+    public void updateText(float[] rotationMatrix, float[] values) {
+        Intent batteryStatus = this.registerReceiver(null, new IntentFilter(Intent.ACTION_BATTERY_CHANGED));
+
+        int level = batteryStatus.getIntExtra(BatteryManager.EXTRA_LEVEL, -1);
+        int scale = batteryStatus.getIntExtra(BatteryManager.EXTRA_SCALE, -1);
+
+
+        TextView tvBLevel = (TextView) findViewById(R.id.bLevel);
+
+        TextView tvR = (TextView) findViewById(R.id.x_roll);
+        TextView tvP = (TextView) findViewById(R.id.y_pitch);
+        TextView tvA = (TextView) findViewById(R.id.z_azimuth);
+
+//        TextView tv1 = (TextView) findViewById(R.id.rot_1);
+//        TextView tv2 = (TextView) findViewById(R.id.rot_2);
+//        TextView tv3 = (TextView) findViewById(R.id.rot_3);
+//        TextView tv4 = (TextView) findViewById(R.id.rot_4);
+//        TextView tv5 = (TextView) findViewById(R.id.rot_5);
+//        TextView tv6 = (TextView) findViewById(R.id.rot_6);
+//        TextView tv7 = (TextView) findViewById(R.id.rot_7);
+//        TextView tv8 = (TextView) findViewById(R.id.rot_8);
+//        TextView tv9 = (TextView) findViewById(R.id.rot_9);
 
         if (!mInitialized) {
-//            tvR.setText("0.0");
-//            tvP.setText("0.0");
-//            tvA.setText("0.0");
+            tvR.setText("0.0");
+            tvP.setText("0.0");
+            tvA.setText("0.0");
 
-            tv1.setText("0.0");
-            tv2.setText("0.0");
-            tv3.setText("0.0");
-            tv4.setText("0.0");
-            tv5.setText("0.0");
-            tv6.setText("0.0");
-            tv7.setText("0.0");
-            tv8.setText("0.0");
-            tv9.setText("0.0");
+//            tv1.setText("0.0");
+//            tv2.setText("0.0");
+//            tv3.setText("0.0");
+//            tv4.setText("0.0");
+//            tv5.setText("0.0");
+//            tv6.setText("0.0");
+//            tv7.setText("0.0");
+//            tv8.setText("0.0");
+//            tv9.setText("0.0");
+
+            tvBLevel.setText("0.0");
 
             mInitialized = true;
         } else {
-//            tvA.setText(Float.toString(values[0])); // z
-//            tvR.setText(Float.toString(values[1])); // x
-//            tvP.setText(Float.toString(values[2])); // y
+            tvA.setText(Float.toString(values[0])); // z
+            tvR.setText(Float.toString(values[1])); // x
+            tvP.setText(Float.toString(values[2])); // y
 
-            tv1.setText(Float.toString(rotationMatrix[0]));
-            tv2.setText(Float.toString(rotationMatrix[1]));
-            tv3.setText(Float.toString(rotationMatrix[2]));
-            tv4.setText(Float.toString(rotationMatrix[3]));
-            tv5.setText(Float.toString(rotationMatrix[4]));
-            tv6.setText(Float.toString(rotationMatrix[5]));
-            tv7.setText(Float.toString(rotationMatrix[6]));
-            tv8.setText(Float.toString(rotationMatrix[7]));
-            tv9.setText(Float.toString(rotationMatrix[8]));
+//            tv1.setText(Float.toString(rotationMatrix[0]));
+//            tv2.setText(Float.toString(rotationMatrix[1]));
+//            tv3.setText(Float.toString(rotationMatrix[2]));
+//            tv4.setText(Float.toString(rotationMatrix[3]));
+//            tv5.setText(Float.toString(rotationMatrix[4]));
+//            tv6.setText(Float.toString(rotationMatrix[5]));
+//            tv7.setText(Float.toString(rotationMatrix[6]));
+//            tv8.setText(Float.toString(rotationMatrix[7]));
+//            tv9.setText(Float.toString(rotationMatrix[8]));
+
+            tvBLevel.setText(Float.toString(level / (float)scale * 100.0f));
         }
     }
 

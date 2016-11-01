@@ -5,5 +5,7 @@
     <string name="cardinalS">S</string>
     <string name="cardinalE">E</string>
     <string name="cardinalW">W</string>
+    <string name="battery_level">Battery Level</string>
+    <string name="rotation_matrix">Rotation Matrix</string>
 
 </resources>

@@ -16,59 +16,6 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 
-    <!--<TextView-->
-        <!--android:paddingTop="20dip"-->
-        <!--android:layout_width="fill_parent"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:textSize="16sp"-->
-        <!--android:textStyle="bold"-->
-        <!--android:gravity="center"-->
-        <!--android:text="Orientation"/>-->
-
-    <!--<TableLayout-->
-        <!--android:paddingTop="10dip"-->
-        <!--android:layout_width="fill_parent"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:stretchColumns="*">-->
-        <!--<TableRow>-->
-            <!--<TextView-->
-                <!--android:layout_width="wrap_content"-->
-                <!--android:layout_height="wrap_content"-->
-                <!--android:textSize="14sp"-->
-                <!--android:text="X-Axis"-->
-                <!--android:gravity="center"/>-->
-            <!--<TextView-->
-                <!--android:layout_width="wrap_content"-->
-                <!--android:layout_height="wrap_content"-->
-                <!--android:textSize="14sp"-->
-                <!--android:text="Y-Axis"-->
-                <!--android:gravity="center"/>-->
-            <!--<TextView-->
-                <!--android:layout_width="wrap_content"-->
-                <!--android:layout_height="wrap_content"-->
-                <!--android:textSize="14sp"-->
-                <!--android:text="Z-Axis"-->
-                <!--android:gravity="center"/>-->
-        <!--</TableRow>-->
-        <!--<TableRow>-->
-            <!--<TextView-->
-                <!--android:layout_width="wrap_content"-->
-                <!--android:layout_height="wrap_content"-->
-                <!--android:id="@+id/x_roll"-->
-                <!--android:gravity="center"/>-->
-            <!--<TextView-->
-                <!--android:layout_width="wrap_content"-->
-                <!--android:layout_height="wrap_content"-->
-                <!--android:id="@+id/y_pitch"-->
-                <!--android:gravity="center"/>-->
-            <!--<TextView-->
-                <!--android:layout_width="wrap_content"-->
-                <!--android:layout_height="wrap_content"-->
-                <!--android:id="@+id/z_azimuth"-->
-                <!--android:gravity="center"/>-->
-        <!--</TableRow>-->
-    <!--</TableLayout>-->
-
     <TextView
         android:paddingTop="20dip"
         android:layout_width="fill_parent"
@@ -76,7 +23,22 @@
         android:textSize="16sp"
         android:textStyle="bold"
         android:gravity="center"
-        android:text="Rotation Matrix"/>
+        android:text="@string/battery_level"/>
+
+    <TextView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/bLevel"
+        android:gravity="center"/>
+
+<TextView
+        android:paddingTop="20dip"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        android:gravity="center"
+        android:text="Orientation"/>
 
     <TableLayout
         android:paddingTop="10dip"
@@ -87,52 +49,105 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/rot_1"
+                android:textSize="14sp"
+                android:text="X-Axis"
                 android:gravity="center"/>
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/rot_2"
+                android:textSize="14sp"
+                android:text="Y-Axis"
                 android:gravity="center"/>
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/rot_3"
-                android:gravity="center"/>
-        </TableRow>
-        <TableRow>
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/rot_4"
-                android:gravity="center"/>
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/rot_5"
-                android:gravity="center"/>
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/rot_6"
+                android:textSize="14sp"
+                android:text="Z-Axis"
                 android:gravity="center"/>
         </TableRow>
         <TableRow>
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/rot_7"
+                android:id="@+id/x_roll"
                 android:gravity="center"/>
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/rot_8"
+                android:id="@+id/y_pitch"
                 android:gravity="center"/>
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/rot_9"
+                android:id="@+id/z_azimuth"
                 android:gravity="center"/>
         </TableRow>
     </TableLayout>
+
+    <!--<TextView-->
+        <!--android:paddingTop="20dip"-->
+        <!--android:layout_width="fill_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:textSize="16sp"-->
+        <!--android:textStyle="bold"-->
+        <!--android:gravity="center"-->
+        <!--android:text="@string/rotation_matrix"/>-->
+
+    <!--<TableLayout-->
+        <!--android:paddingTop="10dip"-->
+        <!--android:layout_width="fill_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:stretchColumns="*">-->
+        <!--<TableRow>-->
+            <!--<TextView-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:id="@+id/rot_1"-->
+                <!--android:gravity="center"/>-->
+            <!--<TextView-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:id="@+id/rot_2"-->
+                <!--android:gravity="center"/>-->
+            <!--<TextView-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:id="@+id/rot_3"-->
+                <!--android:gravity="center"/>-->
+        <!--</TableRow>-->
+        <!--<TableRow>-->
+            <!--<TextView-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:id="@+id/rot_4"-->
+                <!--android:gravity="center"/>-->
+            <!--<TextView-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:id="@+id/rot_5"-->
+                <!--android:gravity="center"/>-->
+            <!--<TextView-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:id="@+id/rot_6"-->
+                <!--android:gravity="center"/>-->
+        <!--</TableRow>-->
+        <!--<TableRow>-->
+            <!--<TextView-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:id="@+id/rot_7"-->
+                <!--android:gravity="center"/>-->
+            <!--<TextView-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:id="@+id/rot_8"-->
+                <!--android:gravity="center"/>-->
+            <!--<TextView-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:id="@+id/rot_9"-->
+                <!--android:gravity="center"/>-->
+        <!--</TableRow>-->
+    <!--</TableLayout>-->
 </LinearLayout>
