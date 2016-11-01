@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.view.Display;
 import android.view.Surface;
 import android.view.WindowManager;
+import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
     private CompassView compassView;
@@ -19,6 +20,8 @@ public class MainActivity extends AppCompatActivity {
     private float[] mValues = new float[3];
 
     private int rotation;
+    public boolean mInitialized;
+
     private final SensorEventListener sensorEventListener = new SensorEventListener() {
         public void onSensorChanged(SensorEvent event) {
             if (event.sensor.getType() == Sensor.TYPE_ACCELEROMETER)
@@ -48,6 +51,7 @@ public class MainActivity extends AppCompatActivity {
         Display display = wm.getDefaultDisplay();
 
         rotation = display.getRotation();
+        mInitialized = false;
 
         updateOrientation(new float[]{0, 0, 0});
     }
@@ -58,6 +62,54 @@ public class MainActivity extends AppCompatActivity {
 //            compassView.setPitch(values[1]);
 //            compassView.setRoll(-values[2]);
             compassView.invalidate();
+        }
+    }
+
+    public void updateText(float[] rotationMatrix, float[] values) {
+//        TextView tvR = (TextView) findViewById(R.id.x_roll);
+//        TextView tvP = (TextView) findViewById(R.id.y_pitch);
+//        TextView tvA = (TextView) findViewById(R.id.z_azimuth);
+
+        TextView tv1 = (TextView) findViewById(R.id.rot_1);
+        TextView tv2 = (TextView) findViewById(R.id.rot_2);
+        TextView tv3 = (TextView) findViewById(R.id.rot_3);
+        TextView tv4 = (TextView) findViewById(R.id.rot_4);
+        TextView tv5 = (TextView) findViewById(R.id.rot_5);
+        TextView tv6 = (TextView) findViewById(R.id.rot_6);
+        TextView tv7 = (TextView) findViewById(R.id.rot_7);
+        TextView tv8 = (TextView) findViewById(R.id.rot_8);
+        TextView tv9 = (TextView) findViewById(R.id.rot_9);
+
+        if (!mInitialized) {
+//            tvR.setText("0.0");
+//            tvP.setText("0.0");
+//            tvA.setText("0.0");
+
+            tv1.setText("0.0");
+            tv2.setText("0.0");
+            tv3.setText("0.0");
+            tv4.setText("0.0");
+            tv5.setText("0.0");
+            tv6.setText("0.0");
+            tv7.setText("0.0");
+            tv8.setText("0.0");
+            tv9.setText("0.0");
+
+            mInitialized = true;
+        } else {
+//            tvA.setText(Float.toString(values[0])); // z
+//            tvR.setText(Float.toString(values[1])); // x
+//            tvP.setText(Float.toString(values[2])); // y
+
+            tv1.setText(Float.toString(rotationMatrix[0]));
+            tv2.setText(Float.toString(rotationMatrix[1]));
+            tv3.setText(Float.toString(rotationMatrix[2]));
+            tv4.setText(Float.toString(rotationMatrix[3]));
+            tv5.setText(Float.toString(rotationMatrix[4]));
+            tv6.setText(Float.toString(rotationMatrix[5]));
+            tv7.setText(Float.toString(rotationMatrix[6]));
+            tv8.setText(Float.toString(rotationMatrix[7]));
+            tv9.setText(Float.toString(rotationMatrix[8]));
         }
     }
 
@@ -100,6 +152,7 @@ public class MainActivity extends AppCompatActivity {
         values[1] = (float) Math.toDegrees(values[1]);
         values[2] = (float) Math.toDegrees(values[2]);
 
+        updateText(outR, values);
         return values;
     }
 
